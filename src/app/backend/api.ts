@@ -16,13 +16,8 @@ import {
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { users } from './users';
 import { User } from '../user/models/user.model';
-import { parse } from 'querystring';
 
-function fakeBackendFactory(
-  backend: MockBackend,
-  options: BaseRequestOptions,
-  realBackend: XHRBackend
-) {
+export function mockBackEndFactory(backend: MockBackend, options: BaseRequestOptions, realBackend: XHRBackend) {
   // first, get users from the local storage or initial data array
   let data: User[] = JSON.parse(localStorage.getItem('users')) || users;
 
@@ -162,8 +157,8 @@ function fakeBackendFactory(
 }
 
 export let fakeBackendProvider = {
-  // use fake backend in place of Http service
+  // use fake backend in place of Http service for backend-less development
   provide: Http,
-  useFactory: fakeBackendFactory,
-  deps: [MockBackend, BaseRequestOptions, XHRBackend]
+  deps: [MockBackend, BaseRequestOptions, XHRBackend],
+  useFactory: mockBackEndFactory
 };
