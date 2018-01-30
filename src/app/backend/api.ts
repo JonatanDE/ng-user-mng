@@ -17,7 +17,11 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { users } from './users';
 import { User } from '../user/models/user.model';
 
-export function mockBackEndFactory(backend: MockBackend, options: BaseRequestOptions, realBackend: XHRBackend) {
+export function mockBackEndFactory(
+  backend: MockBackend,
+  options: BaseRequestOptions,
+  realBackend: XHRBackend
+) {
   // first, get users from the local storage or initial data array
   let data: User[] = JSON.parse(localStorage.getItem('users')) || users;
 
