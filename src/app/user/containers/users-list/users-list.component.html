@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="my-3 p-3 bg-secondary text-center rounded">
+      <ng-container *ngIf="inAddMode; else addButtonTemplate">
+        <h6 class="pb-2 mb-0 text-white">Add new User</h6>
+        <app-user-create (cancelUserEvent)="closeNewUserMode()" (createUserEvent)="addUser($event)"></app-user-create>
+      </ng-container>
+
+      <ng-template #addButtonTemplate>
+        <button type="button" class="btn btn-success" (click)="addNewUserMode()">Add new User</button>
+      </ng-template>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="my-3 p-3 bg-white rounded">
+      <h6 class="border-bottom border-gray pb-2 mb-0">List of Users
+        <span class="badge badge-secondary">{{total$ | async}}</span>
+      </h6>
+      <div class="media text-muted pt-3" *ngFor="let user of users$ | async; let i = index">
+        <ng-container *ngIf="inEdit == i; else viewTemplate">
+          <app-user-edit [user]="user$ | async" (cancelUserEvent)="closeEdit()" (updateUserEvent)="updateUser($event)"></app-user-edit>
+        </ng-container>
+        <ng-template #viewTemplate>
+          <app-user-list-block [user]="user" (deleteUserEvent)="deleteUserConfirm($event)" (editUserEvent)="editUser($event, i)" (viewUserEvent)="viewUser($event)"></app-user-list-block>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="showModal">
+    <app-user-modal [user]="user$ | async" (cancelEvent)="hideModal()" (proceedEvent)="deleteUser($event)"></app-user-modal>
+  </ng-container>
+</div>

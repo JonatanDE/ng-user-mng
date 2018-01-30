@@ -1,0 +1,5 @@
+<div class="flex-grow">
+  <app-user-form [user]="user" (userData)="uForm($event)"></app-user-form>
+  <button type="submit" class="btn btn-secondary float-right" (click)="cancel()">Cancel</button>
+  <button type="submit" class="btn btn-primary float-right mr-1" (click)="update()">Update</button>
+</div>

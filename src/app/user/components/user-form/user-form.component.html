@@ -1,0 +1,6 @@
+<form [formGroup]="userForm" (ngSubmit)="submit()" novalidate>
+  <div class="form-label-group" *ngFor="let f of fields">
+    <input type="text" id="{{f.field}}" class="form-control" placeholder="{{f.name}}" required="" autofocus="" formControlName="{{f.field}}">
+    <label for="{{f.field}}">{{f.name}}</label>
+  </div>
+</form>

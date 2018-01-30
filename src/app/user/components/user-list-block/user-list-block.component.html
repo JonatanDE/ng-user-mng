@@ -1,0 +1,7 @@
+<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+  <strong class="text-gray-dark">{{user.firstName}} {{user.lastName}}</strong>
+  <button type="button" class="btn btn-danger btn-sm float-right" (click)="deleteUser(user.id)">Delete</button>
+  <button type="button" class="btn btn-success btn-sm float-right mr-1" (click)="editUser(user.id)">Edit</button>
+  <button type="button" class="btn btn-primary btn-sm float-right mr-1" (click)="viewUser(user.id)">View</button>
+  <span class="d-block">{{user.position}} in {{user.department}}</span>
+</p>
